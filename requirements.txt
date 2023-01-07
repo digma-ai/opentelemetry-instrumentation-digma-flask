@@ -1,0 +1,5 @@
+flask
+opentelemetry-instrumentation-flask
+opentelemetry-exporter-otlp
+opentelemetry-sdk
+opentelemetry-instrumentation-digma
