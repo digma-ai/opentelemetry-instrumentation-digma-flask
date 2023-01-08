@@ -1,11 +1,7 @@
-from os import environ
-
-from flask import Flask
+from flask import Flask, request
+from opentelemetry.semconv.trace import SpanAttributes
 
 from opentelemetry import trace
-from opentelemetry.semconv.trace import SpanAttributes
-from starlette.middleware import Middleware
-from starlette.middleware.base import BaseHTTPMiddleware
 
 
 class DigmaFlaskInstrumentor:
@@ -14,17 +10,16 @@ class DigmaFlaskInstrumentor:
     def instrument_app(app: Flask):
         if not hasattr(app, "_is_instrumented_by_opentelemetry") or app._is_instrumented_by_opentelemetry == False:
            raise Exception("Digma requires your Flask server to be instrumented. To use the Digma Flask instrumentation please make sure to use the FlaskInstrumentor.instrument() method first.")
-        before_request = DigmaFlaskInstrumentor._before_request_wrapped(app._before_request, app)
+        before_request = DigmaFlaskInstrumentor._before_request_wrapped(app)
         app.before_request ( before_request)
 
 
 
     @staticmethod
-    def _before_request_wrapped(original_before_request, app):
+    def _before_request_wrapped(app):
 
         def before_request():
 
-            original_before_request()
             span = trace.get_current_span()
             if span and span.is_recording():
 
