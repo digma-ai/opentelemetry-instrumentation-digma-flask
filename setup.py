@@ -29,9 +29,9 @@ setup(
     include_package_data=True,
     python_requires='>=3.6',
     install_requires=requires,
-    url="https://github.com/digma-ai/opentelemetry-instrumentation-digma-fastapi",
+    url="https://github.com/digma-ai/opentelemetry-instrumentation-digma-flask",
     project_urls={
-        'Bug Reports': 'https://github.com/digma-ai/opentelemetry-instrumentation-digma-fastapi/issues',
-        'Source': 'https://github.com/digma-ai/opentelemetry-instrumentation-digma-fastapi',
+        'Bug Reports': 'https://github.com/digma-ai/opentelemetry-instrumentation-digma-flask/issues',
+        'Source': 'https://github.com/digma-ai/opentelemetry-instrumentation-digma-flask',
     }
 )
